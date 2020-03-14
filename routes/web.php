@@ -1,5 +1,7 @@
 <?php
 
+use App\Model\Song;
+
 Route::get('/', function () {
     return view('welcome');
 });
