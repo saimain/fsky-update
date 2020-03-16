@@ -1,3 +1,5 @@
+@include('admin.layouts.head')
+@include('admin.layouts.header')
 <!-- Card stats -->
 <div class="row">
   <div class="col-xl-3 col-md-6">
@@ -7,7 +9,7 @@
         <div class="row">
           <div class="col">
             <h5 class="card-title text-uppercase text-muted mb-0">Total Songs</h5>
-            <span class="h2 font-weight-bold mb-0">350,897</span>
+            <span class="h2 font-weight-bold mb-0">{{$songs->count()}}</span>
           </div>
           <div class="col-auto">
             <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -17,7 +19,7 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">Last Updated - 1 May 2020</span>
+          <span class="text-nowrap">{{$lastest_song->updated_at}}</span>
         </p>
       </div>
     </div>
@@ -29,7 +31,7 @@
         <div class="row">
           <div class="col">
             <h5 class="card-title text-uppercase text-muted mb-0">Total Albums</h5>
-            <span class="h2 font-weight-bold mb-0">2,356</span>
+            <span class="h2 font-weight-bold mb-0">{{$albums->count()}}</span>
           </div>
           <div class="col-auto">
             <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -39,7 +41,7 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">Last Updated - 1 May 2020</span>
+          <span class="text-nowrap">{{$lastest_album->updated_at}}</span>
         </p>
       </div>
     </div>
@@ -51,7 +53,7 @@
         <div class="row">
           <div class="col">
             <h5 class="card-title text-uppercase text-muted mb-0">Total Artists</h5>
-            <span class="h2 font-weight-bold mb-0">924</span>
+            <span class="h2 font-weight-bold mb-0">{{$artists->count()}}</span>
           </div>
           <div class="col-auto">
             <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -61,7 +63,7 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">Last Updated - 1 May 2020</span>
+          <span class="text-nowrap">{{$lastest_artist->updated_at}}</span>
         </p>
       </div>
     </div>
@@ -73,7 +75,7 @@
         <div class="row">
           <div class="col">
             <h5 class="card-title text-uppercase text-muted mb-0">Total Users</h5>
-            <span class="h2 font-weight-bold mb-0">490</span>
+            <span class="h2 font-weight-bold mb-0">{{$users->count()}}</span>
           </div>
           <div class="col-auto">
             <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -83,7 +85,7 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">Last Updated - 1 May 2020</span>
+          <span class="text-nowrap">{{$lastest_user->updated_at}}</span>
         </p>
       </div>
     </div>
@@ -92,124 +94,9 @@
 </div>
 </div>
 </div>
-<!-- Page content -->
-<div class="container-fluid mt--6">
-  <div class="row">
-    <div class="col-xl-8">
-      <div class="card">
-        <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="mb-0">Page visits</h3>
-            </div>
-            <div class="col text-right">
-              <a href="#!" class="btn btn-sm btn-primary">See all</a>
-            </div>
-          </div>
-        </div>
-        <div class="table-responsive">
-          <!-- Projects table -->
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Page name</th>
-                <th scope="col">Visitors</th>
-                <th scope="col">Unique users</th>
-                <th scope="col">Bounce rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  /argon/
-                </th>
-                <td>
-                  4,569
-                </td>
-                <td>
-                  340
-                </td>
-                <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/index.html
-                </th>
-                <td>
-                  3,985
-                </td>
-                <td>
-                  319
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/charts.html
-                </th>
-                <td>
-                  3,513
-                </td>
-                <td>
-                  294
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/tables.html
-                </th>
-                <td>
-                  2,050
-                </td>
-                <td>
-                  147
-                </td>
-                <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/profile.html
-                </th>
-                <td>
-                  1,795
-                </td>
-                <td>
-                  190
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4">
-      <div class="card">
-        <div class="card-header bg-transparent">
-          <div class="row align-items-center">
-            <div class="col">
-              <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-              <h5 class="h3 mb-0">Total orders</h5>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <!-- Chart -->
-          <div class="chart">
-            <canvas id="chart-bars" class="chart-canvas"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+
+
+@yield('content')
+@include('admin.layouts.footer')
