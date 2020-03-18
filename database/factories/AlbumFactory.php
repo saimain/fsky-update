@@ -12,6 +12,7 @@ $factory->define(Album::class, function (Faker $faker) {
             return Artist::all()->random();
         },
         'cover' => 'https://i.imgur.com/oozlNAE.png',
-        'name' => $faker->firstNameMale
+        'name' => $faker->firstNameMale,
+        'about' => $faker->text($maxNbChars = 200),
     ];
 });

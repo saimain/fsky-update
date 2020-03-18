@@ -18,6 +18,7 @@ class CreateAlbumsTable extends Migration
             $table->integer('artist_id')->unsigned();
             $table->text('cover');
             $table->string('name');
+            $table->text('about');
             $table->timestamps();
         });
     }

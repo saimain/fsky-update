@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model
 {
+
+    public $guarded = [];
+
     public function song()
     {
         return $this->hasOne('App\Model\Song');
