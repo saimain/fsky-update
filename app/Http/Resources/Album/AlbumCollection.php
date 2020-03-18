@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Album;
 
+use App\Http\Resources\Song\SongCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AlbumCollection extends JsonResource
@@ -18,6 +19,12 @@ class AlbumCollection extends JsonResource
             'id' => $this->id,
             'cover' => $this->cover,
             'name' => $this->name,
+            'artist' => [
+                'name' => $this->artist->name,
+                'detail' => route('artist.show', $this->id),
+            ],
+            'condition' => $this->song()->count() == 0 ? false : true,
+            'songs' => SongCollection::collection($this->song()->get()),
             'detail' => route('album.show', $this->id)
         ];
     }
