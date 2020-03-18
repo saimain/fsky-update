@@ -20,7 +20,7 @@ Route::view('/home', 'home')->middleware('auth:web');
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/dashboard', 'Admin\AdminController@dashboard');
     Route::group(['prefix' => '/dashboard'], function () {
-        Route::resource('/song', 'SongController');
+        Route::resource('/songs', 'SongController');
         Route::post('/search', 'Admin\AdminController@search');
     });
 });
