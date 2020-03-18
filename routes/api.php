@@ -10,6 +10,7 @@ Route::apiResource('/category', 'Api\CategoryController');
 
 Route::apiResource('/album', 'Api\AlbumController');
 
+Route::apiResource('/banner', 'Api\BannerController');
 
 
 Route::post('login', 'Api\UserController@login');
