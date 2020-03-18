@@ -14,5 +14,5 @@ Route::apiResource('/album', 'Api\AlbumController');
 
 Route::post('login', 'Api\UserController@login');
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('details', 'API\UserController@details');
+    Route::post('details', 'Api\UserController@details');
 });
