@@ -17,7 +17,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        return ArtistCollection::collection(Artist::paginate(6));
+        return ArtistCollection::collection(Artist::all());
     }
 
     /**

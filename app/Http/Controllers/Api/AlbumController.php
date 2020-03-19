@@ -17,7 +17,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        return AlbumCollection::collection(Album::paginate(6));
+        return AlbumCollection::collection(Album::all());
     }
 
     /**

@@ -23,7 +23,7 @@ class SongController extends Controller
      */
     public function index()
     {
-        return SongCollection::collection(Song::paginate(6));
+        return SongCollection::collection(Song::all());
     }
 
     /**
