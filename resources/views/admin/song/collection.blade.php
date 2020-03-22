@@ -60,7 +60,7 @@
                                     <b>{{$loop->index+1}}</b>
                                 </td>
                                 <td>
-                                    <img src="{{ $song->cover }}" class="avatar rounded-circle">
+                                <img src="{{asset('source/song/cover/'.$song->cover)}}" class="avatar rounded-circle">
                                 </td>
                                 <td class="table-user">
                                     <b>{{$song->name}}</b>
@@ -73,7 +73,7 @@
                                 </td>
                                 <td class="">
                                     <button style="max-width:5px" class="btn btn-link detail-btn table-action"
-                                        value="{{$song->id}}" data-id="{{$song->id}}" data-cover="{{$song->cover}}"
+                                        value="{{$song->id}}" data-id="{{$song->id}}" data-cover="{{asset('source/song/cover/'.$song->cover)}}"
                                         data-name="{{$song->name}}" data-artist="{{$song->artist}}"
                                         data-category="{{$song->category}}" data-album="{{$song->album}}"
                                         data-lyric="{{$song->lyric}}" data-source="{{$song->source}}">
@@ -251,7 +251,7 @@
                 var album = $(this).data('album');
                 var lyric = $(this).data('lyric');
                 var source = $(this).data('source');    
-
+                console.log(cover);
                 $('#detailModal').modal('show');
                 $('.cover').attr('src',cover);
             });

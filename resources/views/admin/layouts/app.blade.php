@@ -19,7 +19,10 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">{{$lastest_song->updated_at}}</span>
+          <span class="text-nowrap">
+            @if ($songs->count() > 0)
+            {{$lastest_song->updated_at}}
+            @endif</span>
         </p>
       </div>
     </div>
@@ -41,7 +44,11 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">{{$lastest_album->updated_at}}</span>
+          <span class="text-nowrap">
+            @if ($albums->count() > 0)
+            {{$lastest_album->updated_at}}
+            @endif
+            </span>
         </p>
       </div>
     </div>
@@ -63,7 +70,11 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">{{$lastest_artist->updated_at}}</span>
+          <span class="text-nowrap">
+            @if ($artists->count() > 0)
+            {{$lastest_artist->updated_at}}
+            @endif
+          </span>
         </p>
       </div>
     </div>
@@ -75,7 +86,9 @@
         <div class="row">
           <div class="col">
             <h5 class="card-title text-uppercase text-muted mb-0">Total Users</h5>
-            <span class="h2 font-weight-bold mb-0">{{$users->count()}}</span>
+            <span class="h2 font-weight-bold mb-0">
+              {{$users->count()}}
+            </span>
           </div>
           <div class="col-auto">
             <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -85,7 +98,11 @@
         </div>
         <p class="mt-3 mb-0 text-sm">
           <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-          <span class="text-nowrap">{{$lastest_user->updated_at}}</span>
+          <span class="text-nowrap">
+            @if ($users->count() > 0)
+            {{$lastest_user->updated_at}}
+            @endif
+          </span>
         </p>
       </div>
     </div>

@@ -60,8 +60,14 @@ class SongController extends Controller
         $cover = $request->file('cover');
         $source = $request->file('source');
 
-        $new_song_path = rand() . '.' . $source->getClientOriginalExtension();
-        $new_cover_path = rand() . '.' . $cover->getClientOriginalExtension();
+        $songExt = strtoupper($source->getClientOriginalExtension());
+        $coverExt = strtoupper($cover->getClientOriginalExtension());
+
+        // $new_song_path = rand() . '.' . $source->getClientOriginalExtension();
+        // $new_cover_path = rand() . '.' . $cover->getClientOriginalExtension();
+
+        $new_song_path = rand() . '.' . $songExt;
+        $new_cover_path = rand() . '.' . $coverExt;
 
         $cover->move(public_path('cover'), $new_cover_path);
         $source->move(public_path('song'), $new_song_path);

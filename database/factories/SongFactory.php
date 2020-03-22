@@ -22,6 +22,6 @@ $factory->define(Song::class, function (Faker $faker) {
         },
         'cover' => 'song-cover.jpg',
         'lyric' => $faker->paragraph,
-        'source' => '849234502.mp3'
+        'source' => '849234502.MP3'
     ];
 });
