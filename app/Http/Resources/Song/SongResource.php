@@ -16,7 +16,7 @@ class SongResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'cover' => $this->cover,
+            'cover' => asset('source/song/cover/' . $this->cover),
             'name' => $this->name,
             'artist' => [
                 'artist_name' => $this->artist->name,
@@ -31,7 +31,7 @@ class SongResource extends JsonResource
                 'album_detail' => route('album.show', $this->album->id),
             ],
             'lyric' => $this->lyric,
-            'source' =>  asset('song/' . $this->source),
+            'source' =>  asset('source/song/mp3/' . $this->source),
         ];
     }
 }

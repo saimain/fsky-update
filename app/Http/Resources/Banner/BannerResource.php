@@ -15,7 +15,7 @@ class BannerResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'path' => $this->path,
+            'path' => asset('source/banner/' . $this->path),
         ];
     }
 }

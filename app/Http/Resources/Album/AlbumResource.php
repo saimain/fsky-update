@@ -17,7 +17,7 @@ class AlbumResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'cover' => $this->cover,
+            'cover' => asset('source/album/cover/' . $this->cover),
             'name' => $this->name,
             'about' => $this->about,
             'artist' => [

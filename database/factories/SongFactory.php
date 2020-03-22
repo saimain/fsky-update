@@ -20,8 +20,8 @@ $factory->define(Song::class, function (Faker $faker) {
         'album_id' => function () {
             return Album::all()->random();
         },
-        'cover' => 'https://cdn.wildstream.ng/storage/jungle/crop/500/01A9U829At.jpg',
+        'cover' => 'song-cover.jpg',
         'lyric' => $faker->paragraph,
-        'source' => 'storage/mp3/naruto-shippuden-songs_naruto-shippuden-opening-01-hero-s-come-back.mp3'
+        'source' => '849234502.mp3'
     ];
 });

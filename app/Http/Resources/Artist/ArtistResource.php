@@ -18,7 +18,7 @@ class ArtistResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'profile' => $this->profile,
+            'profile' => asset('source/artist/profile/' . $this->profile),
             'name' => $this->name,
             'album' => AlbumCollection::collection($this->album()->get()),
             'song' => SongCollection::collection($this->song()->get()),
