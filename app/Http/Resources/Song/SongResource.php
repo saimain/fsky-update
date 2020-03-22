@@ -31,7 +31,7 @@ class SongResource extends JsonResource
                 'album_detail' => route('album.show', $this->album->id),
             ],
             'lyric' => $this->lyric,
-            'source' =>  $this->source,
+            'source' =>  public_path('song') . $this->source,
         ];
     }
 }
