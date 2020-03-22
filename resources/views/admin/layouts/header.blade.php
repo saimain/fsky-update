@@ -4,7 +4,7 @@
         <div class="scrollbar-inner">
             <!-- Brand -->
             <div class="sidenav-header d-flex align-items-center">
-                <a class="navbar-brand" href="../../pages/dashboards/dashboard.html">
+                <a class="navbar-brand" href="/dashboard">
                     <img src="{{asset('image/index-land.png')}}" class="navbar-brand-img" alt="...">
                 </a>
                 <div class="ml-auto">
@@ -41,41 +41,20 @@
                     <!-- Navigation -->
                     <ul class="navbar-nav mb-md-3">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#navbar-songs" data-toggle="collapse" role="button"
-                                aria-expanded="true" aria-controls="navbar-songs">
+                            <a class="nav-link"
+                                href="/dashboard/songs">
                                 <i class="ni ni-note-03 text-red"></i>
                                 <span class="nav-link-text">Songs</span>
                             </a>
-                            <div class="collapse show" id="navbar-songs">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="/dashboard/songs" class="nav-link">Collections</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../../pages/dashboards/alternative.html" class="nav-link">Add New
-                                            Song</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#navbar-albums" data-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="navbar-albums">
+                            <a class="nav-link"
+                                href="/dashboard/albums">
                                 <i class="ni ni-folder-17 text-orange"></i>
                                 <span class="nav-link-text">Albums</span>
                             </a>
-                            <div class="collapse" id="navbar-albums">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="../../pages/dashboards/dashboard.html" class="nav-link">Collections</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../../pages/dashboards/alternative.html" class="nav-link">Add New
-                                            Song</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
+                     
                         <li class="nav-item">
                             <a class="nav-link" href="#navbar-artists" data-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="navbar-artists">

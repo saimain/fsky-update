@@ -48,6 +48,8 @@
                                 <th>Cover</th>
                                 <th>Song Name</th>
                                 <th>Artist</th>
+                                <th>Album</th>
+                                <th>Category</th>
                                 <th>Date</th>
                                 <th></th>
                             </tr>
@@ -68,23 +70,33 @@
                                 <td class="">
                                     <b>{{$song->artist->name}}</b>
                                 </td>
+                                <th><b>
+                                    @if ($song->album)
+                                    {{$song->album->name}}
+                                    @else
+                                    Single Song
+                                    @endif
+                                </b></th>
+                                <th><b>{{$song->category->name}}</b></th>
                                 <td>
                                     <span class="text-muted">{{ $song->updated_at }}</span>
                                 </td>
                                 <td class="">
                                     <button style="max-width:5px" class="btn btn-link detail-btn table-action"
                                         value="{{$song->id}}" data-id="{{$song->id}}" data-cover="{{asset('source/song/cover/'.$song->cover)}}"
-                                        data-name="{{$song->name}}" data-artist="{{$song->artist}}"
-                                        data-category="{{$song->category}}" data-album="{{$song->album}}"
+                                        data-name="{{$song->name}}" 
+                                     
+                                        data-artist="{{$song->artist->name}}"
+                                        data-category="{{$song->category->name}}" 
+                                        @if ($song->album)
+                                        data-album="{{$song->album->name}}"
+                                        @endif
+
                                         data-lyric="{{$song->lyric}}" data-source="{{$song->source}}">
                                         <i class="fas fa-expand" data-toggle="tooltip"
                                             data-original-title="View Song"></i>
                                     </button>
-                                    <button style="max-width:5px" class="btn btn-link table-action"
-                                        data-toggle="tooltip" data-original-title="Edit Song">
-                                        <i class="fas fa-user-edit"></i>
-                                    </button>
-                                    <form action="/dashboard/song/{{$song->id}}" id="delete-form" method="POST"
+                                    <form action="/dashboard/songs/{{$song->id}}" id="delete-form" method="POST"
                                         class="d-inline">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
@@ -122,11 +134,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img class="cover" src="" style="width:200px;" alt="">
+                    <div class="card shadow-none">
+                        <!-- Card image -->
+                        <img class="cover card-img-top" src="" style="" alt="">
+
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <h5 class="h2 card-title mb-0 song-title"></h5>
+                            <small class="text-muted song-artist"></small>
+                            <small class="text-muted song-album"></small>
+                            <small class="text-muted song-category"></small>
+                            <p class="card-text mt-4 song-lyric"></p>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -251,9 +274,13 @@
                 var album = $(this).data('album');
                 var lyric = $(this).data('lyric');
                 var source = $(this).data('source');    
-                console.log(cover);
                 $('#detailModal').modal('show');
                 $('.cover').attr('src',cover);
+                $('.song-title').text(name);
+                $('.song-artist').text('Artist : '+ artist + ' | ');
+                $('.song-album').text('Album : '+ album  + ' | ');
+                $('.song-category').text('Category : '+ category);
+                $('.song-lyric').text(lyric);
             });
 
         });

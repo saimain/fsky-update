@@ -16,7 +16,7 @@
                             <h3 class="mb-0">Recent Songs</h3>
                         </div>
                         <div class="col text-right">
-                            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            <a href="/dashboard/songs" class="btn btn-sm btn-primary">See all</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,8 @@
                                 <th scope="col">Song Name</th>
                                 <th scope="col">Artist</th>
                                 <th scope="col">Album</th>
-                                <th scope="col"></th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,10 +42,17 @@
                                     {{ $song->artist->name }}
                                 </td>
                                 <td>
+                                    @if ($song->album)
                                     {{ $song->album->name }}
+                                    @else
+                                    Single Song
+                                    @endif
                                 </td>
                                 <td>
-                                    <a href="">Detail</a>
+                                    {{ $song->category->name }}
+                                </td>
+                                <td>
+                                    {{ $song->updated_at}}
                                 </td>
                             </tr>
                             @endforeach

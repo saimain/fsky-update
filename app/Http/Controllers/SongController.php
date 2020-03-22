@@ -69,8 +69,8 @@ class SongController extends Controller
         $new_song_path = rand() . '.' . $songExt;
         $new_cover_path = rand() . '.' . $coverExt;
 
-        $cover->move(public_path('cover'), $new_cover_path);
-        $source->move(public_path('song'), $new_song_path);
+        $cover->move(public_path('source/song/cover'), $new_cover_path);
+        $source->move(public_path('source/song/mp3'), $new_song_path);
 
         $new_song = new Song();
         $new_song->name =  $request->get('name');
@@ -82,7 +82,7 @@ class SongController extends Controller
         $new_song->source = $new_song_path;
         $new_song->save();
 
-        return 'success';
+        return redirect('/dashboard/songs');
     }
 
     /**
@@ -128,6 +128,6 @@ class SongController extends Controller
     public function destroy(Song $song)
     {
         $song->delete();
-        return redirect('/dashboard/song');
+        return redirect('/dashboard/songs');
     }
 }
