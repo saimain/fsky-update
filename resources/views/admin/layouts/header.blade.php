@@ -49,7 +49,7 @@
                             <div class="collapse show" id="navbar-songs">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="/dashboard/song" class="nav-link">Collections</a>
+                                        <a href="/dashboard/songs" class="nav-link">Collections</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="../../pages/dashboards/alternative.html" class="nav-link">Add New
@@ -85,7 +85,7 @@
                             <div class="collapse" id="navbar-artists">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="../../pages/dashboards/dashboard.html" class="nav-link">Collections</a>
+                                        <a href="/dashboard/songs" class="nav-link">Collections</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="../../pages/dashboards/alternative.html" class="nav-link">Add New

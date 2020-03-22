@@ -3,10 +3,22 @@
 @section('page-name','Song Collection')
 
 
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css">
+@endsection
 
 @section('content')
 
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <div class="container-fluid mt--6">
     <div class="row">
@@ -19,11 +31,11 @@
                             <h3 class="mb-0">Song Colleciton</h3>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="#" class="btn btn-sm btn-neutral btn-round btn-icon" data-toggle="tooltip"
-                                data-original-title="Edit product">
+                            <button href="#" class="btn btn-sm btn-neutral btn-round btn-icon" style="" data-toggle="tooltip"
+                                data-original-title="Add New Song" id="add-new">
                                 <span class="btn-inner--icon"><i class="fas fa-plus"></i></span>
                                 <span class="btn-inner--text">Add New Song</span>
-                            </a>
+                        </button>
                         </div>
                     </div>
                 </div>
@@ -82,12 +94,11 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
-
-
                                 </td>
                             </tr>
                             @endif
-                            @endforeach </tbody>
+                            @endforeach 
+                        </tbody>
                     </table>
                     <div class="float-right mr-3">
                         {{ $songs->links() }}
@@ -99,7 +110,7 @@
     </div>
 
 
-    <!-- Modal -->
+  {{-- view song modal --}}
     <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -121,11 +132,114 @@
         </div>
     </div>
 
+
+
+  <!-- Add new song Modal -->
+  <div class="modal fade" id="add-new-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Add New Song</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ route('songs.store') }}" id="upload-song-form" method="post" enctype="multipart/form-data">
+                @csrf
+               
+              
+                <div class="form-group row">
+                    <input class="form-control"  name="name" type="text" value="" placeholder="Enter Song Title" id="">
+                </div>
+                <div class="form-group row">
+                    <select class="artist" style=" width: 120px;" name="artist_id">
+                        @foreach ($artists as $artist)
+                        <option value=""></option>
+                        <option value="{{$artist->id}}">{{ $artist->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <select class="album" style="width: 120px;" name="album_id">
+                        @foreach ($albums as $album)
+                        <option value=""></option>
+                        <option value="{{$album->id}}">{{ $album->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <select class="category" style=" width: 120px;" name="category_id">
+                        @foreach ($categories as $a)
+                        <option value=""></option>
+                        <option value="{{$a->id}}">{{ $a->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <input class="form-control" type="text" name="lyric" value="" placeholder="Enter Song Lyrics" id="">
+                </div>
+                <div class="form-group row">
+                    <div class="custom-file">
+                        <input type="file" name="cover" class="custom-file-input" id="song-cover" lang="en">
+                        <label class="custom-file-label" for="song-cover">Select Song Cover Photo</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="custom-file">
+                        <input type="file" name="source" class="custom-file-input" id="song-file" lang="en">
+                        <label class="custom-file-label" for="song-file">Select Song .mp3</label>
+                    </div>
+                </div>
+              
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary submit">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
     @endsection
 
     @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script>
+
+        
         $(document).ready(function(){
+
+
+            $('.artist').select2({
+                theme:'bootstrap',
+                placeholder: "Select Artist",
+          
+            });
+            $('.album').select2({
+                theme:'bootstrap',
+                placeholder: "Select Album",
+          
+            });
+            $('.category').select2({
+                theme:'bootstrap',
+                placeholder: "Select Category",
+          
+            });
+
+
+            $('#add-new').on('click',function(){
+                $("#add-new-modal").modal('show');
+            });
+
+
+            $('.submit').on('click',function(){
+                $('#upload-song-form').submit();
+            });
+
+
+
 
             $('.detail-btn').on('click',function(){
                 

@@ -34,7 +34,7 @@ class SongCollection extends JsonResource
                 'album_detail' => route('album.show', $this->album->id),
             ],
             'lyric' => $this->lyric,
-            'source' => $this->source,
+            'source' => url($this->source),
             'detail' => route('song.show', $this->id)
         ];
     }
