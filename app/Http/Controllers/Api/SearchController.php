@@ -18,12 +18,14 @@ class SearchController extends Controller
         $name = $request->name;
         $artist = Artist::query()->where('name', $name)->first();
 
-        if ($artist->count() > 0) {
-            return SongCollection::collection($artist->song()->get());
-        } else {
-            $errors = ['error' => 'Artist not found'];
-            return new ErrorResource($errors);
-            // print_r($data);
+        if ($artist) {
+            if ($artist->count() > 0) {
+                return SongCollection::collection($artist->song()->get());
+            } else {
+                $errors = ['error' => 'Artist not found'];
+                return new ErrorResource($errors);
+                // print_r($data);
+            }
         }
     }
 }
