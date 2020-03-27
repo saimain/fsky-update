@@ -14,7 +14,7 @@ class SongController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api')->except('index', 'show');
+        $this->middleware('auth:api')->except('index', 'show', 'top');
     }
     /**
      * Display a listing of the resource.
@@ -89,5 +89,12 @@ class SongController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function top()
+    {
+        $data = Song::with('artist', 'album', 'category')->where('top', true)->get();
+        return SongCollection::collection($data);
     }
 }

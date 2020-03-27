@@ -49,7 +49,34 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'name' => 'required',
+            'artist_id' => 'required',
+            'cover' => 'required'
+        ]);
+
+
+        $cover = $request->file('cover');
+
+        $coverExt = strtoupper($cover->getClientOriginalExtension());
+
+        // $new_song_path = rand() . '.' . $source->getClientOriginalExtension();
+        // $new_cover_path = rand() . '.' . $cover->getClientOriginalExtension();
+
+        $new_cover_path = rand() . '.' . $coverExt;
+
+        $cover->move(public_path('source/album/cover'), $new_cover_path);
+
+
+
+        $new_album = new Album();
+        $new_album->name = $request->name;
+        $new_album->artist_id = $request->artist_id;
+        $new_album->about = $request->about;
+        $new_album->cover = $new_cover_path;
+        $new_album->save();
+
+        return redirect('/dashboard/albums');
     }
 
     /**
@@ -93,6 +120,7 @@ class AlbumController extends Controller
      */
     public function destroy(Album $album)
     {
-        //
+        $album->delete();
+        return redirect('/dashboard/albums');
     }
 }

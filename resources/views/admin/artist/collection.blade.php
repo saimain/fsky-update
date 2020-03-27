@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('page-title','Album Collection | FSKY-Music')
-@section('page-name','Album Collection')
+@section('page-title','Artist Collection | FSKY-Music')
+@section('page-name','Artist Collection')
 
 
 @section('css')
@@ -29,13 +29,13 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col-6">
-                            <h3 class="mb-0">Album Colleciton</h3>
+                            <h3 class="mb-0">Artist Colleciton</h3>
                         </div>
                         <div class="col-6 text-right">
                             <button href="#" class="btn btn-sm btn-neutral btn-round btn-icon" style=""
                                 data-toggle="tooltip" data-original-title="Add New Song" id="add-new">
                                 <span class="btn-inner--icon"><i class="fas fa-plus"></i></span>
-                                <span class="btn-inner--text">Add New Album</span>
+                                <span class="btn-inner--text">Add New Artist</span>
                             </button>
                         </div>
                     </div>
@@ -46,48 +46,49 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
-                                <th>Cover</th>
-                                <th>Album Name</th>
-                                <th>Artist</th>
-                                <th>About</th>
+                                <th>Profile</th>
+                                <th>Name</th>
+                                <th>Song</th>
                                 <th>Date</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($albums as $album)
-                            @if ($albums->count() > 0 )
+                            @foreach ($artists as $artist)
+                            @if ($artists->count() > 0 )
                             <tr>
                                 <td>
                                     <b>{{$loop->index+1}}</b>
                                 </td>
                                 <td>
-                                    <img src="{{asset('source/album/cover/'.$album->cover)}}"
+                                    <img src="{{asset('source/artist/profile/'.$artist->profile)}}"
                                         class="avatar rounded-circle">
                                 </td>
                                 <td class="table-user">
-                                    <b>{{$album->name}}</b>
+                                    <b>{{$artist->name}}</b>
                                 </td>
                                 <td class="">
-                                    <b>{{$album->artist->name}}</b>
+                                    @if($artist->song)
+                                    <b>{{$artist->song->count()}}</b>
+                                    @else
+                                    <b>No Song</b>
+                                    @endif
                                 </td>
-                                <th><b>{{Str::limit($album->about,40)}}</b></th>
                                 <td>
-                                    <span class="text-muted">{{ $album->updated_at }}</span>
+                                    <span class="text-muted">{{ $artist->updated_at }}</span>
                                 </td>
                                 <td class="">
                                     <button style="max-width:5px" class="btn btn-link detail-btn table-action"
-                                        value="{{$album->id}}" data-id="{{$album->id}}"
-                                        data-cover="{{asset('source/album/cover/'.$album->cover)}}"
-                                        data-name="{{$album->name}}" data-about="{{$album->about}}" @if ($album->song)
-                                        data-songcount="{{$album->song->count()}}"
-
+                                        value="{{$artist->id}}" data-id="{{$artist->id}}"
+                                        data-profile="{{asset('source/artist/profile/'.$artist->profile)}}"
+                                        data-name="{{$artist->name}}" @if ($artist->song)
+                                        data-songcount="{{$artist->song->count()}}"
                                         @endif
-                                        data-artist="{{$album->artist->name}}">
+                                        ">
                                         <i class="fas fa-expand" data-toggle="tooltip"
                                             data-original-title="View Album"></i>
                                     </button>
-                                    <form action="/dashboard/albums/{{$album->id}}" id="delete-form" method="POST"
+                                    <form action="/dashboard/artists/{{$artist->id}}" id="delete-form" method="POST"
                                         class="d-inline">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
@@ -104,7 +105,7 @@
                         </tbody>
                     </table>
                     <div class="float-right mr-3">
-                        {{ $albums->links() }}
+                        {{ $artists->links() }}
                     </div>
                 </div>
             </div>
@@ -119,7 +120,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="detailModalLabel">Album Details</h5>
+                    <h5 class="modal-title" id="detailModalLabel">Artist Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -127,14 +128,12 @@
                 <div class="modal-body">
                     <div class="card shadow-none">
                         <!-- Card image -->
-                        <img class="cover card-img-top" src="" style="" alt="">
+                        <img class="profile card-img-top" src="" style="" alt="">
 
                         <!-- Card body -->
                         <div class="card-body">
-                            <h5 class="h2 card-title mb-0 album-name"></h5>
-                            <small class="text-muted album-artist"></small>
-                            <small class="text-muted album-songcount"></small>
-                            <p class="card-text mt-4  album-about"></p>
+                            <h5 class="h2 card-title mb-0 artist-name"></h5>
+                            <small class="text-muted artist-songcount"></small>
                         </div>
                     </div>
                 </div>
@@ -153,37 +152,27 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add New Album</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Artist</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('albums.store') }}" id="upload-album-form" method="post"
+                    <form action="{{ route('artists.store') }}" id="upload-album-form" method="post"
                         enctype="multipart/form-data">
                         @csrf
 
 
                         <div class="form-group row">
-                            <input class="form-control" name="name" type="text" value="" placeholder="Enter Album Name"
+                            <input class="form-control" name="name" type="text" value="" placeholder="Enter Artist Name"
                                 id="">
                         </div>
                         <div class="form-group row">
-                            <select class="artist" style=" width: 120px;" name="artist_id">
-                                @foreach ($artists as $artist)
-                                <option value=""></option>
-                                <option value="{{$artist->id}}">{{ $artist->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <input class="form-control" type="text" name="about" value=""
-                                placeholder="Enter Album About" id="">
-                        </div>
-                        <div class="form-group row">
                             <div class="custom-file">
-                                <input type="file" name="cover" class="custom-file-input" id="album-cover" lang="en">
-                                <label class="custom-file-label" for="album-cover">Select Album Cover Photo</label>
+                                <input type="file" name="profile" class="custom-file-input" id="artist-profile"
+                                    lang="en">
+                                <label class="custom-file-label" for="artist-profile">Select Artist Profile
+                                    Photo</label>
                             </div>
                         </div>
                     </form>
@@ -225,17 +214,13 @@
             $('.detail-btn').on('click',function(){
                 
                 var id = $(this).data('id');
-                var cover = $(this).data('cover');
+                var profile = $(this).data('profile');
                 var name = $(this).data('name');
-                var artist = $(this).data('artist');
-                var about = $(this).data('about');
                 var songcount = $(this).data('songcount');
                 $('#detailModal').modal('show');
-                $('.cover').attr('src',cover);
-                $('.album-title').text(name);   
-                $('.album-artist').text('Artist : '+ artist + ' | ' );
-                $('.album-songcount').text('Song Count : '+ songcount );
-                $('.album-about').text(about);
+                $('.profile').attr('src',profile);
+                $('.artist-name').text(name);   
+                $('.artist-songcount').text('Song Count : '+ songcount );
             });
 
         });

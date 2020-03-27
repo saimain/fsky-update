@@ -1,6 +1,5 @@
 <?php
 
-use App\Model\Song;
 
 Route::get('/', function () {
     return view('welcome');
@@ -8,7 +7,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
@@ -22,6 +21,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::group(['prefix' => '/dashboard'], function () {
         Route::resource('/songs', 'SongController');
         Route::resource('/albums', 'AlbumController');
+        Route::resource('/artists', 'ArtistController');
+        Route::resource('/categories', 'CategoryController');
+        Route::resource('/users', 'Api\UserController');
         Route::post('/search', 'Admin\AdminController@search');
     });
 });

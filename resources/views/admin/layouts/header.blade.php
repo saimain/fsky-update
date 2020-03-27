@@ -41,98 +41,40 @@
                     <!-- Navigation -->
                     <ul class="navbar-nav mb-md-3">
                         <li class="nav-item">
-                            <a class="nav-link"
-                                href="/dashboard/songs">
+                            <a class="nav-link" href="/dashboard/songs">
                                 <i class="ni ni-note-03 text-red"></i>
                                 <span class="nav-link-text">Songs</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"
-                                href="/dashboard/albums">
+                            <a class="nav-link" href="/dashboard/albums">
                                 <i class="ni ni-folder-17 text-orange"></i>
                                 <span class="nav-link-text">Albums</span>
                             </a>
                         </li>
-                     
                         <li class="nav-item">
-                            <a class="nav-link" href="#navbar-artists" data-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="navbar-artists">
+                            <a class="nav-link" href="/dashboard/artists">
                                 <i class="ni ni-circle-08 text-green"></i>
                                 <span class="nav-link-text">Artists</span>
                             </a>
-                            <div class="collapse" id="navbar-artists">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="/dashboard/songs" class="nav-link">Collections</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../../pages/dashboards/alternative.html" class="nav-link">Add New
-                                            Song</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#navbar-users" data-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="navbar-users">
+                            <a class="nav-link" href="/dashboard/categories">
+                                <i class="ni ni-diamond text-info"></i>
+                                <span class="nav-link-text">Categories</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/users">
                                 <i class="ni ni-satisfied text-info"></i>
                                 <span class="nav-link-text">Users</span>
                             </a>
-                            <div class="collapse" id="navbar-users">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="../../pages/dashboards/dashboard.html" class="nav-link">Collections</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../../pages/dashboards/alternative.html" class="nav-link">Add New
-                                            Song</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
+
+
                     </ul>
 
-                    <!-- Divider -->
-                    <hr class="my-3">
 
-                    <!-- Heading -->
-                    <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
-                    <!-- Navigation -->
-                    <ul class="navbar-nav mb-md-3">
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html"
-                                target="_blank">
-                                <i class="ni ni-spaceship"></i>
-                                <span class="nav-link-text">Getting started</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html"
-                                target="_blank">
-                                <i class="ni ni-palette"></i>
-                                <span class="nav-link-text">Foundation</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html"
-                                target="_blank">
-                                <i class="ni ni-ui-04"></i>
-                                <span class="nav-link-text">Components</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html"
-                                target="_blank">
-                                <i class="ni ni-chart-pie-35"></i>
-                                <span class="nav-link-text">Plugins</span>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -152,7 +94,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                                 </div>
-                                <input class="form-control" name="search-data" placeholder="Search" type="text">
+                                <input class="form-control" name="search-data" placeholder="Search Song" type="text">
                             </div>
                         </div>
                         <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main"

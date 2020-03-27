@@ -22,6 +22,7 @@ class CreateSongsTable extends Migration
             $table->text('cover');
             $table->text('lyric')->nullable();
             $table->text('source');
+            $table->boolean('top')->default(false);
             $table->timestamps();
         });
     }
