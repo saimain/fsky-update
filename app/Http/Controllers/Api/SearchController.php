@@ -6,6 +6,7 @@ use App\Model\Song;
 use App\Model\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ErrorResource;
 use App\Http\Resources\Song\SongCollection;
 
 class SearchController extends Controller
@@ -15,8 +16,14 @@ class SearchController extends Controller
         // $data = Artist::find($request);
         // return SongCollection::collection($songs);
         $name = $request->name;
-        $songs = Artist::query()->where('name', 'LIKE', "%{$name}%")->first();
-        // $songs = Artist::find(1);
-        return SongCollection::collection($songs->song()->get());
+        $artist = Artist::query()->where('name', $name)->first();
+
+        if ($artist > 0) {
+            return SongCollection::collection($artist->song()->get());
+        } else {
+            $errors = ['error' => 'Artist not found'];
+            return new ErrorResource($errors);
+            // print_r($data);
+        }
     }
 }
