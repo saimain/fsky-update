@@ -10,11 +10,6 @@ class Song extends Model
         'name', 'artist_id', 'category_id', 'album_id', 'cover', 'source', 'lyric'
     ];
 
-    public function category()
-    {
-        return $this->belongsTo('App\Model\Category');
-    }
-
     public function album()
     {
         return $this->belongsTo('App\Model\Album');

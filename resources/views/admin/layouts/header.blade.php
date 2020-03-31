@@ -59,12 +59,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/categories">
-                                <i class="ni ni-diamond text-info"></i>
-                                <span class="nav-link-text">Categories</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/dashboard/users">
                                 <i class="ni ni-satisfied text-info"></i>
                                 <span class="nav-link-text">Users</span>

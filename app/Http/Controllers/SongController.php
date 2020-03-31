@@ -23,12 +23,11 @@ class SongController extends Controller
         $albums = Album::all();
         $artists = Artist::all();
         $users = User::all();
-        $categories = Category::all();
         $lastest_song = DB::table('songs')->latest('updated_at')->first();
         $lastest_album = DB::table('albums')->latest('updated_at')->first();
         $lastest_artist = DB::table('artists')->latest('updated_at')->first();
         $lastest_user = DB::table('users')->latest('updated_at')->first();
-        return view('admin.song.collection', compact('categories', 'songs', 'albums', 'artists', 'users', 'lastest_song', 'lastest_album', 'lastest_artist', 'lastest_user'));
+        return view('admin.song.collection', compact('songs', 'albums', 'artists', 'users', 'lastest_song', 'lastest_album', 'lastest_artist', 'lastest_user'));
     }
 
     /**

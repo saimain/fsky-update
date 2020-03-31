@@ -28,7 +28,6 @@
                                 <th scope="col">Song Name</th>
                                 <th scope="col">Artist</th>
                                 <th scope="col">Album</th>
-                                <th scope="col">Category</th>
                                 <th scope="col">Date</th>
                             </tr>
                         </thead>
@@ -47,9 +46,6 @@
                                     @else
                                     Single Song
                                     @endif
-                                </td>
-                                <td>
-                                    {{ $song->category->name }}
                                 </td>
                                 <td>
                                     {{ $song->updated_at}}
