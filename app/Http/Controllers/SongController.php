@@ -51,7 +51,6 @@ class SongController extends Controller
         $request->validate([
             'name' => 'required',
             'artist_id' => 'required',
-            'category_id' => 'required',
             'cover' => 'required|image',
             'source' => 'required',
         ]);
@@ -74,7 +73,6 @@ class SongController extends Controller
         $new_song = new Song();
         $new_song->name =  $request->get('name');
         $new_song->artist_id = $request->get('artist_id');
-        $new_song->category_id = $request->get('category_id');
         $new_song->album_id = $request->get('album_id');
         $new_song->cover = $new_cover_path;
         $new_song->lyric = $request->get('lyric');
